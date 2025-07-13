@@ -1,0 +1,34 @@
+import string
+
+def rot13(message):
+    uppercase_alphabets = list(string.ascii_uppercase)
+    lowercase_aplhabets = list(string.ascii_lowercase)
+    
+    temp = ""
+    
+    for x in range(len(message)):
+        if message[x] in uppercase_alphabets or message[x] in lowercase_aplhabets:
+            
+            temp_alphabets = []
+            
+            if message[x].islower():
+                temp_alphabets = lowercase_aplhabets
+            if message[x].isupper():
+                temp_alphabets = uppercase_alphabets
+                
+            position = temp_alphabets.index(message[x])
+            
+            if position >= 13:
+                calculate = 13 - (26 - position)
+                temp = temp + temp_alphabets[calculate]
+           
+            else:
+                temp = temp + temp_alphabets[position + 13]
+                
+        else:
+            temp = temp + message[x]
+
+    return temp
+
+
+print(rot13("abcdefghijklmtyueqt,mbmn"))
