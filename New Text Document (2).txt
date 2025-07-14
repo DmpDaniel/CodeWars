@@ -1,0 +1,40 @@
+def rgb(r, g, b):
+    dictionary = {10:'A', 11: 'B', 12:'C', 13 : 'D', 14:'E', 15:'F'}
+    
+    array = [r, g, b]
+    
+    for value in range(len(array)):
+        temp = ""
+        
+        if array[value] <= 0:
+            array[value] = '00'
+            continue
+        
+        if array[value] > 255:
+            array[value] = 'FF'
+            continue
+        
+        while array[value] > 0:
+            
+            result = int(array[value] / 16)
+            remainder = array[value] % 16
+            array[value] = result
+            
+            if remainder > 9:
+                temp = temp + dictionary[remainder]
+            else:
+                temp = temp + str(remainder)
+            
+            
+        array[value] = ''.join(reversed(temp))
+        
+        if len(array[value]) == 1:
+            array[value] = "0" + array[value]
+            
+    newTemp = ""
+    for x in array: newTemp = newTemp + x
+        
+    return newTemp
+    
+    
+print(rgb(-20, 275, 125))
